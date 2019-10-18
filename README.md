@@ -6,3 +6,4 @@ Conditions:
 1. One teacher may have more then one subjects;
 2. The Class may have more then one teacher;
 3. Teachers can replace each other;
+4. One perent may have more then one kid;
