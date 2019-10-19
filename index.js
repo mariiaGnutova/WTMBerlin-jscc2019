@@ -1,20 +1,23 @@
-Person =class {
-  constructor (id, name, surname, gender) {
+Person = class {
+  constructor(id, name, surname, gender) {
     this.id = id;
     this.name = name;
     this.surname = surname;
     this.gender = gender;
-    }
-}
+  }
+};
 
 class Adult extends Person {
-  constructor (id, name, surname, gender, login, passwort){
+  constructor(id, name, surname, gender, login, passwort) {
     super(id, name, surname, gender);
     this.login = login;
     this.passwort = passwort;
   }
-  login(login, passwort){
-    if((login.localeCompare(this.login) == 0) && (passwort.localeCompare(this.passwort) == 0)){
+  login(login, passwort) {
+    if (
+      login.localeCompare(this.login) == 0 &&
+      passwort.localeCompare(this.passwort) == 0
+    ) {
       return true;
     }
     return false;
@@ -23,37 +26,65 @@ class Adult extends Person {
 
 var teacherID = 0;
 
-class Teacher extends Adult{
-  constructor(name, surname, gender, login, passwort){
+class Teacher extends Adult {
+  constructor(name, surname, gender, login, passwort) {
     super(teacherID, name, surname, gender, login, passwort);
     teacherID++;
   }
-  rateSchoolkid(grade, subject, kid){
-    var newGrade = new Grade (grade, subject, kid);
+  rateSchoolkid(grade, subject, kid) {
+    var newGrade = new Grade(grade, subject, kid);
     kid.becomeGrade(newGrade);
+  }
+
+  getSubjectGrades(schoolClass, subject) {
+    console.log(
+      "Subject: " +
+        subject.subject +
+        " Class: " +
+        schoolClass.classGrade +
+        schoolClass.letter
+    );
+    for (let kid of schoolClass.kids) {
+      console.log(kid.name + " " + kid.surname + " ");
+
+      for (let grade of kid.grades) {
+        if (grade.subject == subject) {
+          let date = grade.date;
+          date = dateToString(date);
+          console.log(date + " " + grade.grade);
+        }
+      }
+    }
   }
 }
 
-var perentID = 0;
+var parentID = 0;
 
-class Perent extends Adult{
-  constructor(name, surname, gender, login, passwort){
-    super(perentID, name, surname, gender, login, passwort);
+class Parent extends Adult {
+  constructor(name, surname, gender, login, passwort) {
+    super(parentID, name, surname, gender, login, passwort);
     this.schoolkids = [];
-    perentID++;
+    parentID++;
   }
-  addKid(kid){
-   this.schoolkids.push(kid);
-   kid.perents.push(this);
+  addKid(kid) {
+    this.schoolkids.push(kid);
+    kid.parents.push(this);
   }
-  
-  getKidsGrades(){
-    for(let kid of this.schoolkids){
+
+  getKidsGrades() {
+    for (let kid of this.schoolkids) {
       console.log("Grade report for: " + kid.name);
-      for (let grade of kid.grades){
-       let date = grade.date;
-       date = dateToString(date);
-       console.log('Date: ' + date + ' Subject: ' + grade.subject.subject +' Grade: ' + grade.grade);
+      for (let grade of kid.grades) {
+        let date = grade.date;
+        date = dateToString(date);
+        console.log(
+          "Date: " +
+            date +
+            " Subject: " +
+            grade.subject.subject +
+            " Grade: " +
+            grade.grade
+        );
       }
       console.log();
     }
@@ -62,79 +93,85 @@ class Perent extends Adult{
 
 var schoolkidID = 0;
 
-class Schoolkid extends Person{
-  constructor(name, surname, gender){
+class Schoolkid extends Person {
+  constructor(name, surname, gender) {
     super(schoolkidID, name, surname, gender);
     this.grades = [];
-    this.perents = [];
-    this.class = '';
+    this.parents = [];
+    this.class = "";
     schoolkidID++;
   }
-  assignToClass(schoolClass){
-  schoolClass.kids.push(this);
-  this.class = schoolClass;
+  assignToClass(schoolClass) {
+    schoolClass.kids.push(this);
+    this.class = schoolClass;
   }
-  becomeGrade(grade){
-      this.grades.push(grade);
-  }
-}
-
-class SchoolClass{
- constructor(classGrade, letter){
-  this.classGrade = classGrade;
-  this.letter = letter;
-  this.kids = [];
+  becomeGrade(grade) {
+    this.grades.push(grade);
   }
 }
 
-class Subject{
- constructor(subject){
-  this.subject = subject;
-  this.grades = [];
- }
+class SchoolClass {
+  constructor(classGrade, letter) {
+    this.classGrade = classGrade;
+    this.letter = letter;
+    this.kids = [];
+    this.subject = [];
+  }
 }
 
-class Grade{
-  constructor(grade, subject, kid){
-    if (!isNaN(grade)){
+class Subject {
+  constructor(subject) {
+    this.subject = subject;
+    this.grades = [];
+    this.class = [];
+  }
+  assignToClass(schoolClass) {
+    this.class.push(schoolClass);
+    schoolClass.subject.push(this);
+  }
+}
+
+class Grade {
+  constructor(grade, subject, kid) {
+    if (!isNaN(grade)) {
       this.grade = grade;
       this.subject = subject;
       this.kid = kid;
       this.date = new Date();
       subject.grades.push(this);
-    }else{
-      console.log('Input is not a number');}
+    } else {
+      console.log("Input is not a number");
     }
+  }
 }
 
-function printObject(object){
-    console.log(object);
+function printObject(object) {
+  console.log(object);
 }
 
-
-// took function from http://qaru.site/questions/821/how-do-i-get-the-current-date-in-javascript
-function dateToString(today){
+// taken function from http://qaru.site/questions/821/how-do-i-get-the-current-date-in-javascript
+function dateToString(today) {
   today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   var yyyy = today.getFullYear();
-  return dd + '.' + mm + '.' + yyyy;
+  return dd + "." + mm + "." + yyyy;
 }
 
-var TA= new Teacher('Tatiana', 'Alexeevna', 'Frau', 'login', 'passwort');
-var VI= new Teacher('Veronika', 'Ivanova', 'Frau', 'login2', 'passwort2');
+var TA = new Teacher("Tatiana", "Alexeevna", "Frau", "login", "passwort");
+var VI = new Teacher("Veronika", "Ivanova", "Frau", "login2", "passwort2");
 
-var a4 = new SchoolClass(4, 'A');
+var a4 = new SchoolClass(4, "A");
 
-var dariyaGnutova = new Schoolkid('Dariya', 'Gnutova', 'w');
-var katyaSidorova = new Schoolkid('Katya', 'Sidorova', 'w');
-var petyaProhorov = new Schoolkid('Petya', 'Prohorov', 'm');
-var maxPupishev = new Schoolkid('Max', 'Pupishev', 'm');
+var dariyaGnutova = new Schoolkid("Dariya", "Gnutova", "w");
+var katyaSidorova = new Schoolkid("Katya", "Sidorova", "w");
+var petyaProhorov = new Schoolkid("Petya", "Prohorov", "m");
+var maxPupishev = new Schoolkid("Max", "Pupishev", "m");
 
-var mam1 = new Perent ('Alexandra', 'Ivanovna', 'Frau', 'login4', 'passwort4');
-var mam2 = new Perent ('Evgenia', 'Nam', 'Frau', 'login5', 'passwort5');
-var papa1 = new Perent ('Ivan', 'Kinyaev', 'Herr', 'login6', 'passwort6');
-var papa2 = new Perent ('Peter', 'Romashka', 'Herr', 'login7', 'passwort7');
+var mam1 = new Parent("Alexandra", "Ivanovna", "Frau", "login4", "passwort4");
+var mam2 = new Parent("Evgenia", "Nam", "Frau", "login5", "passwort5");
+var papa1 = new Parent("Ivan", "Kinyaev", "Herr", "login6", "passwort6");
+var papa2 = new Parent("Peter", "Romashka", "Herr", "login7", "passwort7");
 
 mam1.addKid(dariyaGnutova);
 mam1.addKid(katyaSidorova);
@@ -146,14 +183,15 @@ mam2.addKid(maxPupishev);
 papa2.addKid(petyaProhorov);
 papa2.addKid(maxPupishev);
 
-
 dariyaGnutova.assignToClass(a4);
 katyaSidorova.assignToClass(a4);
 petyaProhorov.assignToClass(a4);
 maxPupishev.assignToClass(a4);
 
-var math = new Subject('Math');
-var deutsch = new Subject('Deutsch');
+var math = new Subject("Math");
+math.assignToClass(a4);
+var deutsch = new Subject("Deutsch");
+deutsch.assignToClass(a4);
 
 TA.rateSchoolkid(1, math, dariyaGnutova);
 TA.rateSchoolkid(1, math, maxPupishev);
@@ -161,9 +199,12 @@ VI.rateSchoolkid(2, deutsch, dariyaGnutova);
 VI.rateSchoolkid(3, deutsch, petyaProhorov);
 TA.rateSchoolkid(2, math, katyaSidorova);
 VI.rateSchoolkid(1, deutsch, katyaSidorova);
+VI.rateSchoolkid(2, math, dariyaGnutova);
 
 printObject(dariyaGnutova);
-printObject(dariyaGnutova.perents[0]);
+printObject(dariyaGnutova.parents[0]);
 printObject(TA);
 printObject(math);
 mam1.getKidsGrades();
+
+TA.getSubjectGrades(a4, math);
