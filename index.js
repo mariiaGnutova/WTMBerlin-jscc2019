@@ -8,15 +8,15 @@ Person = class {
 };
 
 class Adult extends Person {
-  constructor(id, name, surname, gender, login, passwort) {
+  constructor(id, name, surname, gender, login, password) {
     super(id, name, surname, gender);
     this.login = login;
-    this.passwort = passwort;
+    this.password = password;
   }
-  login(login, passwort) {
+  login(login, password) {
     if (
       login.localeCompare(this.login) == 0 &&
-      passwort.localeCompare(this.passwort) == 0
+      password.localeCompare(this.password) == 0
     ) {
       return true;
     }
@@ -27,13 +27,13 @@ class Adult extends Person {
 var teacherID = 0;
 
 class Teacher extends Adult {
-  constructor(name, surname, gender, login, passwort) {
-    super(teacherID, name, surname, gender, login, passwort);
+  constructor(name, surname, gender, login, password) {
+    super(teacherID, name, surname, gender, login, password);
     teacherID++;
   }
   rateSchoolkid(grade, subject, kid) {
     var newGrade = new Grade(grade, subject, kid);
-    kid.becomeGrade(newGrade);
+    kid.getGrade(newGrade);
   }
 
   getSubjectGrades(schoolClass, subject) {
@@ -61,8 +61,8 @@ class Teacher extends Adult {
 var parentID = 0;
 
 class Parent extends Adult {
-  constructor(name, surname, gender, login, passwort) {
-    super(parentID, name, surname, gender, login, passwort);
+  constructor(name, surname, gender, login, password) {
+    super(parentID, name, surname, gender, login, password);
     this.schoolkids = [];
     parentID++;
   }
@@ -105,7 +105,7 @@ class Schoolkid extends Person {
     schoolClass.kids.push(this);
     this.class = schoolClass;
   }
-  becomeGrade(grade) {
+  getGrade(grade) {
     this.grades.push(grade);
   }
 }
@@ -115,7 +115,7 @@ class SchoolClass {
     this.classGrade = classGrade;
     this.letter = letter;
     this.kids = [];
-    this.subject = [];
+    this.subjects = [];
   }
 }
 
@@ -123,11 +123,11 @@ class Subject {
   constructor(subject) {
     this.subject = subject;
     this.grades = [];
-    this.class = [];
+    this.classes = [];
   }
   assignToClass(schoolClass) {
-    this.class.push(schoolClass);
-    schoolClass.subject.push(this);
+    this.classes.push(schoolClass);
+    schoolClass.subjects.push(this);
   }
 }
 
@@ -158,8 +158,8 @@ function dateToString(today) {
   return dd + "." + mm + "." + yyyy;
 }
 
-var TA = new Teacher("Tatiana", "Alexeevna", "Frau", "login", "passwort");
-var VI = new Teacher("Veronika", "Ivanova", "Frau", "login2", "passwort2");
+var TA = new Teacher("Tatiana", "Alexeevna", "Frau", "login", "password");
+var VI = new Teacher("Veronika", "Ivanova", "Frau", "login2", "password2");
 
 var a4 = new SchoolClass(4, "A");
 
@@ -168,10 +168,10 @@ var katyaSidorova = new Schoolkid("Katya", "Sidorova", "w");
 var petyaProhorov = new Schoolkid("Petya", "Prohorov", "m");
 var maxPupishev = new Schoolkid("Max", "Pupishev", "m");
 
-var mam1 = new Parent("Alexandra", "Ivanovna", "Frau", "login4", "passwort4");
-var mam2 = new Parent("Evgenia", "Nam", "Frau", "login5", "passwort5");
-var papa1 = new Parent("Ivan", "Kinyaev", "Herr", "login6", "passwort6");
-var papa2 = new Parent("Peter", "Romashka", "Herr", "login7", "passwort7");
+var mam1 = new Parent("Alexandra", "Ivanovna", "Frau", "login4", "password4");
+var mam2 = new Parent("Evgenia", "Nam", "Frau", "login5", "password5");
+var papa1 = new Parent("Ivan", "Kinyaev", "Herr", "login6", "password6");
+var papa2 = new Parent("Peter", "Romashka", "Herr", "login7", "password7");
 
 mam1.addKid(dariyaGnutova);
 mam1.addKid(katyaSidorova);
