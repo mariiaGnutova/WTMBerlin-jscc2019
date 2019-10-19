@@ -7,7 +7,7 @@ Person =class {
     }
 }
 
-class Authentication extends Person {
+class Adult extends Person {
   constructor (id, name, surname, gender, login, passwort){
     super(id, name, surname, gender);
     this.login = login;
@@ -23,7 +23,7 @@ class Authentication extends Person {
 
 var teacherID = 0;
 
-class Teacher extends Authentication{
+class Teacher extends Adult{
   constructor(name, surname, gender, login, passwort){
     super(teacherID, name, surname, gender, login, passwort);
     teacherID++;
@@ -36,7 +36,7 @@ class Teacher extends Authentication{
 
 var perentID = 0;
 
-class Perent extends Authentication{
+class Perent extends Adult{
   constructor(name, surname, gender, login, passwort){
     super(perentID, name, surname, gender, login, passwort);
     this.schoolkids = [];
@@ -45,6 +45,18 @@ class Perent extends Authentication{
   addKid(kid){
    this.schoolkids.push(kid);
    kid.perents.push(this);
+  }
+  
+  getKidsGrades(){
+    for(let kid of this.schoolkids){
+      console.log("Grade report for: " + kid.name);
+      for (let grade of kid.grades){
+       let date = grade.date;
+       date = dateToString(date);
+       console.log('Date: ' + date + ' Subject: ' + grade.subject.subject +' Grade: ' + grade.grade);
+      }
+      console.log();
+    }
   }
 }
 
@@ -55,11 +67,12 @@ class Schoolkid extends Person{
     super(schoolkidID, name, surname, gender);
     this.grades = [];
     this.perents = [];
+    this.class = '';
     schoolkidID++;
-
   }
   assignToClass(schoolClass){
   schoolClass.kids.push(this);
+  this.class = schoolClass;
   }
   becomeGrade(grade){
       this.grades.push(grade);
@@ -87,6 +100,7 @@ class Grade{
       this.grade = grade;
       this.subject = subject;
       this.kid = kid;
+      this.date = new Date();
       subject.grades.push(this);
     }else{
       console.log('Input is not a number');}
@@ -95,6 +109,16 @@ class Grade{
 
 function printObject(object){
     console.log(object);
+}
+
+
+// took function from http://qaru.site/questions/821/how-do-i-get-the-current-date-in-javascript
+function dateToString(today){
+  today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  return dd + '.' + mm + '.' + yyyy;
 }
 
 var TA= new Teacher('Tatiana', 'Alexeevna', 'Frau', 'login', 'passwort');
@@ -135,8 +159,11 @@ TA.rateSchoolkid(1, math, dariyaGnutova);
 TA.rateSchoolkid(1, math, maxPupishev);
 VI.rateSchoolkid(2, deutsch, dariyaGnutova);
 VI.rateSchoolkid(3, deutsch, petyaProhorov);
+TA.rateSchoolkid(2, math, katyaSidorova);
+VI.rateSchoolkid(1, deutsch, katyaSidorova);
 
 printObject(dariyaGnutova);
 printObject(dariyaGnutova.perents[0]);
 printObject(TA);
 printObject(math);
+mam1.getKidsGrades();
