@@ -8,14 +8,14 @@ Person = class {
 };
 
 class Adult extends Person {
-  constructor(id, name, surname, gender, login, password) {
+  constructor(id, name, surname, gender, username, password) {
     super(id, name, surname, gender);
-    this.login = login;
+    this.username = username;
     this.password = password;
   }
-  login(login, password) {
+  login(username, password) {
     if (
-      login.localeCompare(this.login) == 0 &&
+      username.localeCompare(this.username) == 0 &&
       password.localeCompare(this.password) == 0
     ) {
       return true;
@@ -27,8 +27,8 @@ class Adult extends Person {
 var teacherID = 0;
 
 class Teacher extends Adult {
-  constructor(name, surname, gender, login, password) {
-    super(teacherID, name, surname, gender, login, password);
+  constructor(name, surname, gender, username, password) {
+    super(teacherID, name, surname, gender, username, password);
     teacherID++;
   }
   rateSchoolkid(grade, subject, kid) {
@@ -61,8 +61,8 @@ class Teacher extends Adult {
 var parentID = 0;
 
 class Parent extends Adult {
-  constructor(name, surname, gender, login, password) {
-    super(parentID, name, surname, gender, login, password);
+  constructor(name, surname, gender, username, password) {
+    super(parentID, name, surname, gender, username, password);
     this.schoolkids = [];
     parentID++;
   }
@@ -158,8 +158,8 @@ function dateToString(today) {
   return dd + "." + mm + "." + yyyy;
 }
 
-var TA = new Teacher("Tatiana", "Alexeevna", "Frau", "login", "password");
-var VI = new Teacher("Veronika", "Ivanova", "Frau", "login2", "password2");
+var TA = new Teacher("Tatiana", "Alexeevna", "Frau", "username", "password");
+var VI = new Teacher("Veronika", "Ivanova", "Frau", "username2", "password2");
 
 var a4 = new SchoolClass(4, "A");
 
