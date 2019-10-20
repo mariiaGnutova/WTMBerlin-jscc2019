@@ -44,17 +44,16 @@ class Teacher extends Adult {
         schoolClass.classGrade +
         schoolClass.letter
     );
-    for (let kid of schoolClass.kids) {
+    schoolClass.kids.forEach(function(kid) {
       console.log(kid.name + " " + kid.surname + " ");
-
-      for (let grade of kid.grades) {
+      kid.grades.forEach(function(grade) {
         if (grade.subject == subject) {
           let date = grade.date;
           date = dateToString(date);
           console.log(date + " " + grade.grade);
         }
-      }
-    }
+      });
+    });
   }
 }
 
@@ -72,9 +71,9 @@ class Parent extends Adult {
   }
 
   getKidsGrades() {
-    for (let kid of this.schoolkids) {
+    this.schoolkids.forEach(function(kid) {
       console.log("Grade report for: " + kid.name);
-      for (let grade of kid.grades) {
+      kid.grades.forEach(function(grade) {
         let date = grade.date;
         date = dateToString(date);
         console.log(
@@ -85,9 +84,8 @@ class Parent extends Adult {
             " Grade: " +
             grade.grade
         );
-      }
-      console.log();
-    }
+      });
+    });
   }
 }
 
