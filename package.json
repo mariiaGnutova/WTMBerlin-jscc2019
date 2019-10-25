@@ -1,0 +1,23 @@
+{
+  "name": "wtmberlin-jscc2019",
+  "version": "1.0.0",
+  "description": "'parent chach the notes'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariiaGnutova/WTMBerlin-jscc2019.git"
+  },
+  "author": "'Mariia Gnutova'",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mariiaGnutova/WTMBerlin-jscc2019/issues"
+  },
+  "homepage": "https://github.com/mariiaGnutova/WTMBerlin-jscc2019#readme",
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-plugin-vue": "^5.2.3"
+  }
+}
