@@ -1,16 +1,12 @@
 const DataBase = require ('./database');
 const Adult = require ('./adult.js');
-const gradeJS = require ('./grade.js');
-const Grade = gradeJS.Grade;
-const saveGrades = gradeJS.saveGrades;
-const schoolkidJS = require ('./schoolkid');
-const Schoolkid = schoolkidJS.Schoolk;
-const allKids = schoolkidJS.allKids;
+const {saveGrades, loadGrade, Grade, allGrades} = require ('./grade.js');
+const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
 require ('./dateToString') ();
 let allteachers = [];
 
 var teacherID = 0;
-module.exports = Teachers = class extends Adult {
+Teacher = class extends Adult {
   constructor (name, surname, gender, username, password) {
     super (teacherID, name, surname, gender, username, password);
     teacherID++;
@@ -49,7 +45,7 @@ const loadTeachers = () => {
 };
 
 module.exports = {
-  Teachers,
+  Teacher,
   allteachers,
   loadTeachers,
   saveTeachers,

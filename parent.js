@@ -1,9 +1,7 @@
 const Adult = require ('./adult.js');
 const DataBase = require ('./database');
-const schoolkidJS = require ('./schoolkid');
-const Schoolkid = schoolkidJS.Schoolk;
-const allKids = schoolkidJS.allKids;
-let parentObjects = [];
+const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
+let allParents = [];
 
 var parentID = 0;
 Parent = class extends Adult {
@@ -11,7 +9,7 @@ Parent = class extends Adult {
     super (parentID, name, surname, gender, username, password);
     this.schoolkidsID = [];
     parentID++;
-    parentObjects.push (this);
+    allParents.push (this);
   }
   addKid (kid) {
     this.schoolkidsID.push (kid.id);
@@ -39,7 +37,7 @@ Parent = class extends Adult {
 };
 
 const saveParents = () => {
-  DataBase.save ('parent.json', parentObjects);
+  DataBase.save ('parent.json', allParents);
 };
 
 const loadParent = () => {
@@ -48,7 +46,7 @@ const loadParent = () => {
 
 module.exports = {
   Parent,
-  parentObjects,
   loadParent,
   saveParents,
+  allParents
 };

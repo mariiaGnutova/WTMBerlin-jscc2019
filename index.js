@@ -1,28 +1,9 @@
-const teacherJS = require ('./teachers.js');
-const Teacher = teacherJS.Teachers;
-const loadTeachers = teacherJS.loadTeachers;
-const saveTeachers = teacherJS.saveTeachers;
-const schoolClassJS = require ('./schoolClass');
-const SchoolClass = schoolClassJS.SchoolClass;
-const saveSchoolClass = schoolClassJS.saveSchoolClass;
-const loadSchoolClass = schoolClassJS.loadSchoolClass;
-const schoolkidJS = require ('./schoolkid');
-const Schoolkid = schoolkidJS.Schoolkid;
-const saveKids = schoolkidJS.saveKids;
-const loadKids = schoolkidJS.loadKids;
-const gradeJS = require ('./grade.js');
-const saveGrades = gradeJS.saveGrades;
-const loadGrade = gradeJS.loadGrade;
-
-const parentJS = require ('./parent');
-const Parent = parentJS.Parent;
-const loadParent = parentJS.loadParent;
-const savePerents = parentJS.saveParents;
-
-const subjectJS = require ('./subject');
-const Subject = subjectJS.Subject;
-const saveSubjects = subjectJS.saveSubjects;
-const loadSubjects = subjectJS.loadSubjects;
+const {Teacher, allteachers, loadTeachers, saveTeachers} = require ('./teachers.js');
+const {SchoolClass, saveSchoolClass, loadSchoolClass} = require ('./schoolClass');
+const {Schoolkid, saveKids, loadKids} = require ('./schoolkid');
+const {saveGrades, loadGrade} = require ('./grade.js');
+const {Parent, loadParent, saveParents} = require ('./parent');
+const {Subject, saveSubjects, loadSubjects} = require ('./subject');
 
 function printObject (object) {
   console.log (object);
@@ -78,7 +59,7 @@ VI.rateSchoolkid (2, math, dariyaGnutova);
 mam1.getKidsGrades ();
 
 TA.getSubjectGrades (a4, math);
-savePerents ();
+saveParents ();
 saveSubjects ();
 saveSchoolClass ();
 saveKids ();

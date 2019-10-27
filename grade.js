@@ -24,8 +24,8 @@ const loadGrade = () => {
 };
 
 module.exports = {
-  allGrades,
   saveGrades,
   loadGrade,
   Grade,
-};
+  allGrades,
+  };
