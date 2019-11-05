@@ -1,10 +1,16 @@
-const {Teacher, allteachers, loadTeachers, saveTeachers} = require ('./teachers.js');
-const {SchoolClass, saveSchoolClass, loadSchoolClass} = require ('./schoolClass');
-const {Schoolkid, saveKids, loadKids} = require ('./schoolkid');
-const {saveGrades, loadGrade} = require ('./grade.js');
-const {Parent, loadParent, saveParents} = require ('./parent');
-const {Subject, saveSubjects, loadSubjects} = require ('./subject');
+const {Teacher, allteachers, loadTeachers, saveTeachers} = require ('./models/teachers.js');
+const {SchoolClass, saveSchoolClass, loadSchoolClass} = require ('./models/schoolClass');
+const {Schoolkid, saveKids, loadKids} = require ('./models/schoolkid');
+const {saveGrades, loadGrade} = require ('./models/grade.js');
+const {Parent, loadParent, saveParents} = require ('./models/parent');
+const {Subject, saveSubjects, loadSubjects} = require ('./models/subject');
+const ClassService = require('./services/service-schoolClass');
+const KidService = require('./services/service-schoolkid');
+const GradeService = require('./services/service-grade');
+const TeacherService = require('./services/service-teacher');
+const SubjectService = require('./services/service-subject');
 
+async function main() {
 function printObject (object) {
   console.log (object);
 }
@@ -13,6 +19,7 @@ var TA = new Teacher ('Tatiana', 'Alexeevna', 'Frau', 'username', 'password');
 var VI = new Teacher ('Veronika', 'Ivanova', 'Frau', 'username2', 'password2');
 
 var a4 = new SchoolClass ('4A');
+// await ClassService.add(a4);
 
 var dariyaGnutova = new Schoolkid ('Dariya', 'Gnutova', 'w');
 var katyaSidorova = new Schoolkid ('Katya', 'Sidorova', 'w');
@@ -39,10 +46,14 @@ katyaSidorova.assignToClass (a4);
 petyaProhorov.assignToClass (a4);
 maxPupishev.assignToClass (a4);
 
+
+
 var math = new Subject ('Math');
 math.assignToClass (a4);
 var deutsch = new Subject ('Deutsch');
 deutsch.assignToClass (a4);
+
+await SubjectService.add(math);
 
 TA.rateSchoolkid (1, math, dariyaGnutova);
 TA.rateSchoolkid (1, math, maxPupishev);
@@ -52,22 +63,34 @@ TA.rateSchoolkid (2, math, katyaSidorova);
 VI.rateSchoolkid (1, deutsch, katyaSidorova);
 VI.rateSchoolkid (2, math, dariyaGnutova);
 
+
+
 // printObject (dariyaGnutova);
 // printObject (dariyaGnutova.parents[0]);
 // printObject (TA);
 // printObject (math);
-mam1.getKidsGrades ();
+// mam1.getKidsGrades ();
 
-TA.getSubjectGrades (a4, math);
-saveParents ();
-saveSubjects ();
-saveSchoolClass ();
-saveKids ();
-saveGrades ();
-saveTeachers ();
-console.log ('All Gades: ', loadGrade ());
-console.log ('All Parents: ', loadParent ());
-console.log ('All School Classes: ', loadSchoolClass ());
-console.log ('ALL KIDS: ', loadKids ());
-console.log ('All Subjects: ', loadSubjects ());
-console.log ('All Teachers: ', loadTeachers ());
+// TA.getSubjectGrades (a4, math);
+// saveParents ();
+// saveSubjects ();
+// saveSchoolClass ();
+// saveKids ();
+// saveGrades ();
+// saveTeachers ();
+// console.log ('All Gades: ', loadGrade ());
+// console.log ('All Parents: ', loadParent ());
+// console.log ('All School Classes: ', loadSchoolClass ());
+// console.log ('ALL KIDS: ', loadKids ());
+// console.log ('All Subjects: ', loadSubjects ());
+// console.log ('All Teachers: ', loadTeachers ());
+
+// await KidService.add(dariyaGnutova)
+// await KidService.add(katyaSidorova)
+// await KidService.add(petyaProhorov)
+// await KidService.add(maxPupishev)
+// await ClassService.add(a4)
+
+}
+
+main()

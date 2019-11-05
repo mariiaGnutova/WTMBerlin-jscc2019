@@ -1,14 +1,15 @@
-const DataBase = require ('./database');
+const DataBase = require ('./../database');
 const Adult = require ('./adult.js');
 const {saveGrades, loadGrade, Grade, allGrades} = require ('./grade.js');
 const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
-require ('./dateToString') ();
+require ('../dateToString') ();
 let allteachers = [];
 
 var teacherID = 0;
 Teacher = class extends Adult {
-  constructor (name, surname, gender, username, password) {
-    super (teacherID, name, surname, gender, username, password);
+  constructor (name, surname, gender, username, password, idTeacher) {
+    idTeacher = teacherID;
+    super (idTeacher, name, surname, gender, username, password);
     teacherID++;
     allteachers.push (this);
   }
@@ -33,6 +34,9 @@ Teacher = class extends Adult {
       });
     });
   }
+  static create({name, surname, gender, username, password, idTeacher}) {
+    return new Teacher(name, surname, gender, username, password, idTeacher);
+}
 };
 
 const saveTeachers = () => {

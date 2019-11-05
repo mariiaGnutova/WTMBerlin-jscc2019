@@ -1,13 +1,16 @@
-const DataBase = require ('./database');
+const DataBase = require ('./../database');
 const allSchoolClasses = [];
 
 SchoolClass = class {
-  constructor (className) {
+  constructor (className, kids = [], subjects = []) {
     this.className = className;
-    this.kids = [];
-    this.subjects = [];
+    this.kids = kids;
+    this.subjects = subjects;
     allSchoolClasses.push (this);
   }
+  static create({lassName, kids, subjects}) {
+    return new SchoolClass(lassName, kids, subjects);
+}
 };
 
 const saveSchoolClass = () => {

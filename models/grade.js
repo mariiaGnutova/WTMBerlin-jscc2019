@@ -1,18 +1,21 @@
-const DataBase = require ('./database');
+const DataBase = require ('./../database');
 let allGrades = [];
 
 Grade = class {
-  constructor (grade, subject, kid) {
+  constructor (grade, subject, kidsID) {
     if (!isNaN (grade)) {
       this.grade = grade;
       this.subject = subject;
-      this.kidID = kid.id;
+      this.kidID = kidsID;
       this.date = new Date ();
       allGrades.push (this);
     } else {
       console.log ('Input is not a number');
     }
   }
+  static create({grade, subject, kidsID}) {
+    return new Grade(grade, subject, kidsID);
+}
 };
 
 const saveGrades = () => {

@@ -1,7 +1,7 @@
 const fs = require ('fs');
 const save = function (filename, data) {
   fs.writeFileSync ('database/' + filename, JSON.stringify (data));
-  console.log (data);
+  // console.log (data);
 };
 
 const load = function (filename) {

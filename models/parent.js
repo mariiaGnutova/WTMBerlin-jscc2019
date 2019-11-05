@@ -1,13 +1,14 @@
 const Adult = require ('./adult.js');
-const DataBase = require ('./database');
+const DataBase = require ('./../database');
 const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
 let allParents = [];
 
 var parentID = 0;
 Parent = class extends Adult {
-  constructor (name, surname, gender, username, password) {
-    super (parentID, name, surname, gender, username, password);
-    this.schoolkidsID = [];
+  constructor (name, surname, gender, username, password, schoolkidsID = [], idParent) {
+    idParent = parentID;
+    super (idParent, name, surname, gender, username, password);
+    this.schoolkidsID = schoolkidsID;
     parentID++;
     allParents.push (this);
   }
@@ -23,17 +24,20 @@ Parent = class extends Adult {
       kid.grades.forEach (function (grade) {
         let date = grade.date;
         date = dateToString (date);
-        console.log (
-          'Date: ' +
-            date +
-            ' Subject: ' +
-            grade.subject.subject +
-            ' Grade: ' +
-            grade.grade
-        );
+        // console.log (
+        //   'Date: ' +
+        //     date +
+        //     ' Subject: ' +
+        //     grade.subject.subject +
+        //     ' Grade: ' +
+        //     grade.grade
+        // );
       });
     });
   }
+  static create({name, surname, gender, username, password, schoolkidsID , idParent}) {
+    return new Parent(name, surname, gender, username, password, schoolkidsID , idParent);
+}
 };
 
 const saveParents = () => {
