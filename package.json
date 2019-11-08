@@ -19,5 +19,9 @@
   "devDependencies": {
     "eslint": "^6.5.1",
     "eslint-plugin-vue": "^5.2.3"
+  },
+  "dependencies": {
+    "flatted": "^2.0.1",
+    "fs": "0.0.1-security"
   }
 }

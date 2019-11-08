@@ -4,13 +4,14 @@ const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
 let allParents = [];
 
 var parentID = 0;
-Parent = class extends Adult {
-  constructor (name, surname, gender, username, password, schoolkidsID = [], idParent) {
-    idParent = parentID;
+module.exports = class Parent extends Adult {
+  constructor (name, surname, gender, username, password, schoolkidsID = [], id) {
+    const idParent = parentID;
     super (idParent, name, surname, gender, username, password);
     this.schoolkidsID = schoolkidsID;
     parentID++;
     allParents.push (this);
+    this.id = id;
   }
   addKid (kid) {
     this.schoolkidsID.push (kid.id);
@@ -24,33 +25,11 @@ Parent = class extends Adult {
       kid.grades.forEach (function (grade) {
         let date = grade.date;
         date = dateToString (date);
-        // console.log (
-        //   'Date: ' +
-        //     date +
-        //     ' Subject: ' +
-        //     grade.subject.subject +
-        //     ' Grade: ' +
-        //     grade.grade
-        // );
+    
       });
     });
   }
-  static create({name, surname, gender, username, password, schoolkidsID , idParent}) {
-    return new Parent(name, surname, gender, username, password, schoolkidsID , idParent);
+  static create({name, surname, gender, username, password, schoolkidsID , id}) {
+    return new Parent(name, surname, gender, username, password, schoolkidsID , id);
 }
-};
-
-const saveParents = () => {
-  DataBase.save ('parent.json', allParents);
-};
-
-const loadParent = () => {
-  return DataBase.load ('parent.json');
-};
-
-module.exports = {
-  Parent,
-  loadParent,
-  saveParents,
-  allParents
 };

@@ -35,6 +35,8 @@ module.exports = class Service {
 
     allItems.push(item)
 
+    const kar = Flatted.stringify(this);
+    console.log(kar)
     await this.saveAll(allItems)
 
     return item

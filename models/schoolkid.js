@@ -1,15 +1,16 @@
 const DataBase = require ('./../database');
 const Person = require ('./person.js');
-var id = 0;
+var idKids = 0;
 let allKids = [];
 
-Schoolkid = class extends Person {
-  constructor (name, surname, gender, grades = [], parents = [], SClass = '', idNew) {
-    idNew = id;
+module.exports = class Schoolkid extends Person {
+  constructor (name, surname, gender, grades = [], parents = [], SClass = '', id) {
+    const idNew = idKids;
     super (idNew, name, surname, gender);
     this.grades = grades;
     this.parents = parents;
     this.SClass = SClass;
+    this.id = id;
     
     id++;
     allKids.push (this);
@@ -21,22 +22,8 @@ Schoolkid = class extends Person {
   setGrade (grade) {
     this.grades.push (grade);
   }
-  static create({name, surname, gender, grades, parents , SClass, idNew }) {
-    return new Schoolkid(name, surname, gender, grades, parents , SClass, idNew);
+  static create({name, surname, gender, grades, parents , SClass, id }) {
+    return new Schoolkid(name, surname, gender, grades, parents , SClass, id);
 }
 };
 
-const saveKids = () => {
-  DataBase.save ('schoolkid.json', allKids);
-};
-
-const loadKids = () => {
-  return DataBase.load ('schoolkid.json');
-};
-
-module.exports = {
-  Schoolkid,
-  saveKids,
-  loadKids,
-  allKids,
-};

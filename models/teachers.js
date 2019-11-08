@@ -1,15 +1,16 @@
 const DataBase = require ('./../database');
 const Adult = require ('./adult.js');
-const {saveGrades, loadGrade, Grade, allGrades} = require ('./grade.js');
-const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
+const Grade = require ('./grade.js');
+const allKids = require ('./schoolkid');
 require ('../dateToString') ();
 let allteachers = [];
 
 var teacherID = 0;
-Teacher = class extends Adult {
-  constructor (name, surname, gender, username, password, idTeacher) {
-    idTeacher = teacherID;
+module.exports = class Teacher extends Adult {
+  constructor (name, surname, gender, username, password, id) {
+    var idTeacher = teacherID;
     super (idTeacher, name, surname, gender, username, password);
+    this.id = id;
     teacherID++;
     allteachers.push (this);
   }
@@ -34,23 +35,7 @@ Teacher = class extends Adult {
       });
     });
   }
-  static create({name, surname, gender, username, password, idTeacher}) {
-    return new Teacher(name, surname, gender, username, password, idTeacher);
+  static create({name, surname, gender, username, password, id}) {
+    return new Teacher(name, surname, gender, username, password, id);
 }
-};
-
-const saveTeachers = () => {
-  DataBase.save ('teachers.json', allteachers);
-  console.log (allteachers, ' all Grades were saved');
-};
-
-const loadTeachers = () => {
-  return DataBase.load ('teachers.json');
-};
-
-module.exports = {
-  Teacher,
-  allteachers,
-  loadTeachers,
-  saveTeachers,
 };

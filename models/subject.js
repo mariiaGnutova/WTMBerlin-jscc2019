@@ -1,33 +1,19 @@
 const DataBase = require ('./../database');
-const allSubjects = [];
+/* const allSubjects = []; */
 
-Subject = class {
-  constructor (subject, classes = []) {
+module.exports = class Subject {
+  constructor (subject, classes = [], id) {
     this.subject = subject;
     //  this.grades = [];
     this.classes = classes;
-    allSubjects.push (this);
+    this.id = id;
+   /*  allSubjects.push (this); */
   }
   assignToClass (schoolClass) {
     this.classes.push (schoolClass.className);
     schoolClass.subjects.push (this.subject);
   }
-  static create({subject, classes}) {
-    return new Subject(subject, classes);
+  static create({subject, classes, id}) {
+    return new Subject(subject, classes, id);
 }
-};
-
-const saveSubjects = () => {
-  DataBase.save ('subject.json', allSubjects);
-};
-
-const loadSubjects = () => {
-  return DataBase.load ('subject.json');
-};
-
-module.exports = {
-  Subject,
-  saveSubjects,
-  loadSubjects,
-  allSubjects,
 };
