@@ -1,5 +1,5 @@
-const Adult = require ('./adult.js.js');
-const DataBase = require ('../database');
+const Adult = require ('./adult.js');
+const DataBase = require ('./../database');
 const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
 let allParents = [];
 

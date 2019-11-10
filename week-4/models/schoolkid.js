@@ -1,5 +1,5 @@
-const DataBase = require ('../database');
-const Person = require ('./person.js.js');
+const DataBase = require ('./../database');
+const Person = require ('./person.js');
 var idKids = 0;
 let allKids = [];
 

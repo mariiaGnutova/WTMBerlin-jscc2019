@@ -1,5 +1,5 @@
-const DataBase = require ('../database');
-const Adult = require ('./adult.js.js');
+const DataBase = require ('./../database');
+const Adult = require ('./adult.js');
 const Grade = require ('./grade.js');
 const allKids = require ('./schoolkid');
 require ('../dateToString') ();

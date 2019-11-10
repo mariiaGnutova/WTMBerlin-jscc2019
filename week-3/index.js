@@ -23,7 +23,7 @@ await TeacherService.add(TA);
 await TeacherService.add(VI);
 
 var a4 = new SchoolClass ('4A');
-var a5 = new SchoolClass ('5A');
+var a5 = new SchoolClass ('5A'); 
 /* await ClassService.add(a4);
 await ClassService.add(a5);
 const findClass = await ClassService.find(1); */

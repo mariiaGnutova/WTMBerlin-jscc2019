@@ -1,4 +1,4 @@
-const DataBase = require ('../database');
+const DataBase = require ('./../database');
 let allGrades = [];
 
 module.exports = class Grade {

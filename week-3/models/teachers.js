@@ -1,6 +1,6 @@
 const DataBase = require ('../database');
 const Adult = require ('./adult.js.js');
-const Grade = require ('./grade.js');
+const Grade = require ('./grade.js.js');
 const allKids = require ('./schoolkid');
 require ('../dateToString') ();
 let allteachers = [];
