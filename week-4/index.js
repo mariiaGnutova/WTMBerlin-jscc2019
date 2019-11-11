@@ -24,8 +24,8 @@ app.get ('/parents/all', async (req, res) => {
   res.render ('parents', {parents: parents});
 });
 
-//axios.post('/parents/addKids/35/7').then(console.log)
-app.post ('/parents/addKids/:parentId/:kidId', async (req, res) => {
+//axios.post('/parents/35/addKids/7').then(console.log)
+app.post ('/parents/:parentId/addKids/:kidId', async (req, res) => {
   const allParents = await ParentService.findAll ();
   const parent = allParents.find (p => p.id == req.params.parentId);
   var newArray = [];
@@ -71,8 +71,8 @@ app.delete ('/kids/:id', async (req, res) => {
   res.send ('Ok' + toDelet);
 });
 
-//axios.post('/kids/assignToClass/5A/6').then(console.log)
-app.post ('/kids/assignToClass/:schoolckass/:id', async (req, res) => {
+//axios.post('/kids/5/assignToClass/6A').then(console.log)
+app.post ('/kids/:id/assignToClass/:schoolckass', async (req, res) => {
   const allKids = await KidsService.findAll ();
   const child = allKids.find (p => p.id == req.params.id);
   child.SClass = req.params.schoolckass;
