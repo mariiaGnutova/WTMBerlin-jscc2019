@@ -37,6 +37,16 @@ app.post ('/parents/:parentId/addKids/:kidId', async (req, res) => {
   console.log ('KIDS: ' + parent.schoolkidsID);
   await ParentService.saveAll (allParents);
 
+  const allKids = await KidsService.findAll ();
+  const child = allKids.find (p => p.id == req.params.kidId);
+  var parentArray = [];
+  child.parents.forEach (element => {
+    parentArray.push(element);
+  });
+  parentArray.push(parent);
+  child.parents = parentArray;
+  await KidsService.saveAll (allKids);
+ 
   res.send (await ParentService.find (req.params.parentId));
 });
 

@@ -61,6 +61,14 @@ math.assignToClass (a4);
 var deutsch = new Subject ('Deutsch');
 deutsch.assignToClass (a5);
 
+TA.rateSchoolkid (1, math, dariyaGnutova);
+TA.rateSchoolkid (1, math, maxPupishev);
+ VI.rateSchoolkid (2, deutsch, dariyaGnutova); 
+ VI.rateSchoolkid (3, deutsch, petyaProhorov);
+TA.rateSchoolkid (2, math, katyaSidorova);
+VI.rateSchoolkid (1, deutsch, katyaSidorova);
+VI.rateSchoolkid (2, math, dariyaGnutova); 
+
 
 await ParentService.add(mam1);
 await ParentService.add(mam2);
@@ -93,13 +101,7 @@ const savedSubjects = await SubjectService.findAll() */
 //const findDeutsch = await SubjectService.find(1)
 //console.log("Subject Deutsch + " + findDeutsch.subject)
 
-/* TA.rateSchoolkid (1, math, dariyaGnutova);
-TA.rateSchoolkid (1, math, maxPupishev); */
-/* VI.rateSchoolkid (2, deutsch, dariyaGnutova); */
-/* VI.rateSchoolkid (3, deutsch, petyaProhorov);
-TA.rateSchoolkid (2, math, katyaSidorova);
-VI.rateSchoolkid (1, deutsch, katyaSidorova);
-VI.rateSchoolkid (2, math, dariyaGnutova); */
+
 
 
 

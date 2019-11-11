@@ -15,8 +15,8 @@ module.exports = class Teacher extends Adult {
     allteachers.push (this);
   }
   rateSchoolkid (grade, subject, kid) {
-    var newGrade = new Grade (grade, subject, kid);
-    kid.getGrade (newGrade);
+    var newGrade = new Grade (grade, subject, kid.idKids);
+    kid.receiveGrade (newGrade);
   }
 
   getSubjectGrades (schoolClass, subject) {
