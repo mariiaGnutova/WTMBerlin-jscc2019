@@ -19,8 +19,7 @@ function printObject (object) {
 var TA = new Teacher ('Tatiana', 'Alexeevna', 'Frau', 'username', 'password');
 var VI = new Teacher ('Veronika', 'Ivanova', 'Frau', 'username2', 'password2');
 
-await TeacherService.add(TA);
-await TeacherService.add(VI);
+
 
 var a4 = new SchoolClass ('4A');
 var a5 = new SchoolClass ('5A'); 
@@ -34,14 +33,8 @@ var katyaSidorova = new Schoolkid ('Katya', 'Sidorova', 'w');
 var petyaProhorov = new Schoolkid ('Petya', 'Prohorov', 'm');
 var maxPupishev = new Schoolkid ('Max', 'Pupishev', 'm');
 
-await KidService.add(dariyaGnutova);
-await KidService.add(katyaSidorova);
-await KidService.add(petyaProhorov);
-await KidService.add(maxPupishev);
-const allChildren = await KidService.findAll();
-console.log('All Children + ' + allChildren[2].name)
-const firstChild = await KidService.find(2);
-console.log('First Child + ' + firstChild.name)
+
+
 
 var mam1 = new Parent ('Alexandra', 'Ivanovna', 'Frau', 'login4', 'password4');
 var mam2 = new Parent ('Evgenia', 'Nam', 'Frau', 'login5', 'password5');
@@ -58,34 +51,40 @@ mam2.addKid (maxPupishev);
 papa2.addKid (petyaProhorov);
 papa2.addKid (maxPupishev);
 
-await ParentService.add(mam1);
-await ParentService.add(mam2);
-await ParentService.add(papa1);
-await ParentService.add(papa2);
-
-const allParent = await ParentService.findAll();
-console.log('All parents + ' + allParent.length)
-
-
-
 dariyaGnutova.assignToClass (a4);
 katyaSidorova.assignToClass (a4);
 petyaProhorov.assignToClass (a4);
 maxPupishev.assignToClass (a4);
-
-
 
 var math = new Subject ('Math');
 math.assignToClass (a4);
 var deutsch = new Subject ('Deutsch');
 deutsch.assignToClass (a5);
 
+
+await ParentService.add(mam1);
+await ParentService.add(mam2);
+await ParentService.add(papa1);
+await ParentService.add(papa2);
+await KidService.add(dariyaGnutova);
+await KidService.add(katyaSidorova);
+await KidService.add(petyaProhorov);
+await KidService.add(maxPupishev);
+
+await TeacherService.add(TA);
+await TeacherService.add(VI);
+const allChildren = await KidService.findAll();
+console.log('All Children + ' + allChildren[2].name)
+const firstChild = await KidService.find(2);
+console.log('First Child + ' + firstChild.name)
+
+const allParent = await ParentService.findAll();
+console.log('All parents + ' + allParent.length)
+
 const countTeachers = await TeacherService.findAll();
 console.log("All Teachers " + countTeachers.length);
 const firstTeacher = await TeacherService.find(1);
 console.log ('First Teachers: ', firstTeacher.name);
-
-
 
 /* await SubjectService.add(math);
 await SubjectService.add(deutsch);

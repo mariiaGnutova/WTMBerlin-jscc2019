@@ -1,4 +1,4 @@
-const Adult = require ('./adult.js.js');
+const Adult = require ('./adult');
 const DataBase = require ('../database');
 const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
 let allParents = [];
@@ -14,7 +14,7 @@ module.exports = class Parent extends Adult {
     this.id = id;
   }
   addKid (kid) {
-    this.schoolkidsID.push (kid.id);
+    this.schoolkidsID.push (kid.idKids);
     kid.parents.push (this);
   }
 
