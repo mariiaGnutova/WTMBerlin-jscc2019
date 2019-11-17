@@ -3,7 +3,7 @@ my first JS Project
 
 I want to create platform, where perents will be able to chack grades from they children.
 Conditions:
-1. One teacher may have more then one subjects;
+1. One teacher msay have more then one subjects;
 2. The Class may have more then one teacher;
 3. Teachers can replace each other;
 4. One perent may have more then one kid;
@@ -13,10 +13,11 @@ axios.get
 I have problem with schoolkids model.
 ## grade:
 ### grade would be added to DB through rateSchoolkid-service
+### get all
 axios.get('http://localhost:3010/grade/all').then(console.log)
-
+### get by ID
 axios.get('http://localhost:3010/grade/:id').then(console.log)
-
+### delete by ID
 axios.delete('http://localhost:3010/grade/:id').then(console.log)
 
 ## parent
