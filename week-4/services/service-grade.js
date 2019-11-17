@@ -1,5 +1,5 @@
 const BaseService = require('./base-service')
-const GradesModel = require('../models/grade')
+const GradesModel = require('../../week-5/models/grade')
 
 class GradesService extends BaseService {
     constructor() {

@@ -1,5 +1,5 @@
 const BaseService = require('./base-service')
-const ParentModel = require('../models/parent')
+const ParentModel = require('../../week-5/models/parent')
 
 class ParentService extends BaseService {
     constructor() {

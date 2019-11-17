@@ -1,4 +1,4 @@
-const Person = require ('./person.js');
+const Person = require ('./person');
 
 module.exports = class Adult extends Person {
   constructor (id, name, surname, gender, username, password) {

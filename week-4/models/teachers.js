@@ -1,40 +1,11 @@
-const mongoose = require('mongoose')
+const DataBase = require ('../../week-5/database');
+const Adult = require ('./adult');
+const Grade = require ('./grade');
+const allKids = require ('./schoolkid');
+require ('../../week-5/dateToString') ();
+let allteachers = [];
 
-const TeacherSchema = new mongoose.Schema({
-  name:  {
-    type: String,
-    required: true,
-    minlength: 2
-},
-  surname:  {
-    type: String,
-    required: true,
-    minlength: 2
-},
-  gender:  {
-    type: String,
-    required: true,
-    minlength: 2
-},
-  username:  {
-    type: String,
-    required: true,
-    minlength: 5
-},
-  password: {
-    type: String,
-    required: true,
-    minlength: 6
-}
-})
-
-TeacherSchema.plugin(require('mongoose-autopopulate'))
-
-const TeacherModel = mongoose.model('Teacher', TeacherSchema)
-
-module.exports = TeacherModel
-
-/* var teacherID = 0;
+var teacherID = 0;
 module.exports = class Teacher extends Adult {
   constructor (name, surname, gender, username, password, id) {
     var idTeacher = teacherID;
@@ -68,4 +39,3 @@ module.exports = class Teacher extends Adult {
     return new Teacher(name, surname, gender, username, password, id);
 }
 };
- */

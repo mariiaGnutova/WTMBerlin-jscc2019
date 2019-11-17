@@ -1,49 +1,9 @@
-const mongoose = require('mongoose')
+const Adult = require ('./adult');
+const DataBase = require ('../../week-5/database');
+const {Schoolkid, saveKids, loadKids, allKids} = require ('./schoolkid');
+let allParents = [];
 
-const ParentSchema = new mongoose.Schema({
-  name:  {
-    type: String,
-    required: true,
-    minlength: 2
-},
-  surname:  {
-    type: String,
-    required: true,
-    minlength: 2
-},
-  gender:  {
-    type: String,
-    required: true,
-    minlength: 2
-},
-  username:  {
-    type: String,
-    required: true,
-    minlength: 5
-},
-  password: {
-    type: String,
-    required: true,
-    minlength: 6
-},
-schoolkids: [{
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Schoolkid',
-      autopopulate: {
-          maxDepth: 1
-      }
-  }]
-})
-
-ParentSchema.plugin(require('mongoose-autopopulate'))
-
-const ParentModel = mongoose.model('Parent', ParentSchema)
-
-module.exports = ParentModel
-
-
-
-/* var parentID = 0;
+var parentID = 0;
 module.exports = class Parent extends Adult {
   constructor (name, surname, gender, username, password, schoolkidsID = [], id) {
     const idParent = parentID;
@@ -72,4 +32,4 @@ module.exports = class Parent extends Adult {
   static create({name, surname, gender, username, password, schoolkidsID , id}) {
     return new Parent(name, surname, gender, username, password, schoolkidsID , id);
 }
-}; */
+};

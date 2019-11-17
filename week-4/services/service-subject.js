@@ -1,6 +1,6 @@
 
 const BaseService = require('./base-service')
-const SubjectModel = require('../models/subject')
+const SubjectModel = require('../../week-5/models/subject')
 
 class SubjectService extends BaseService {
     constructor() {
