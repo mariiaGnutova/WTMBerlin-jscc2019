@@ -37,7 +37,7 @@ const SchoolkidSchema = new mongoose.Schema ({
       },
     },
   ],
-  schoolClass: [
+  schoolClass: 
     {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'SchoolClass',
@@ -45,7 +45,7 @@ const SchoolkidSchema = new mongoose.Schema ({
         maxDepth: 1
       }
     }
-  ]
+  
 })
 
 SchoolkidSchema.plugin (require ('mongoose-autopopulate'));
