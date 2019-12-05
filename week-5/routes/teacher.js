@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const TeacherService = require('../services/teacher-service')
-const RateSchoolkidService = require('../services/rateSchoolkid-service')
+const RateSchoolkidService = require('../services/rate-schoolkid-service')
 
 router.get('/all', async (req, res) => {
     const teachers = await TeacherService.findAll()
@@ -21,7 +21,7 @@ router.get('/all', async (req, res) => {
 
 
   //axios.post('/teacher/rateSchoolkid/5dd135d09ce84e20ea6492e3', {subject:'5dd145eaf60de4265cd58660', grade: 1}).then(console.log)
-  router.post('/rateSchoolkid/:schoolkidId', async (req, res) => {
+  router.post('/rate-schoolkid/:schoolkidId', async (req, res) => {
     const grade = await RateSchoolkidService.rateSchoolkid(req.params.schoolkidId, req.body.subject, req.body.grade)
     res.send(grade)
   })

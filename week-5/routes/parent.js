@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const ParentService = require('../services/parent-service')
-const AddSchoolkidService = require('../services/addSchoolkid-service')
+const AddSchoolkidService = require('../services/add-schoolkid-service')
 
 router.get('/all', async (req, res) => {
     const parents = await ParentService.findAll()

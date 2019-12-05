@@ -5,25 +5,25 @@ const SchoolkidSchema = new mongoose.Schema ({
   name: {
     type: String,
     required: true,
-    minlength: 2
+    minlength: 2,
   },
   surname: {
     type: String,
     required: true,
-    minlength: 2
+    minlength: 2,
   },
   gender: {
     type: String,
     required: true,
-    minlength: 2
+    minlength: 2,
   },
-
+  // _id: String,
   grades: [
     {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Grade',
       autopopulate: {
-        maxDepth: 1
+        maxDepth: 1,
       },
     },
   ],
@@ -33,42 +33,34 @@ const SchoolkidSchema = new mongoose.Schema ({
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Parent',
       autopopulate: {
-        maxDepth: 1
+        maxDepth: 1,
       },
     },
   ],
-  schoolClass: 
-    {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'SchoolClass',
-      autopopulate: {
-        maxDepth: 1
-      }
-    }
-  
-})
+  schoolClass: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'SchoolClass',
+    autopopulate: {
+      maxDepth: 1,
+    },
+  },
+});
+
+SchoolkidSchema.methods.hasMoreThenOneGrade = function () {
+  return SchoolkidModel.find ({
+    $where: 'this.grades.length > 1',
+  });
+};
+
+SchoolkidSchema.statics.findGradeOverOne = function () {
+  return this.find (
+    { grades: { $elemMatch: { grade: { $gt:0 } } } }
+ 
+  );
+};
 
 SchoolkidSchema.plugin (require ('mongoose-autopopulate'));
 
 const SchoolkidModel = mongoose.model ('Schoolkid', SchoolkidSchema);
-
-SchoolkidSchema.methods.findGradeOver2 = function () {
-  //doesn't work
-  return SchoolkidModel.find (
-    {grades: { $elemMatch : { grade: { $gte:1
-    }} } }
- //doesn't work
- //  { $where: "this.grades.length > 1" }
-);
-
-//doesn't work
-// return SchoolkidModel.find (
-//   {"grades.grade": { $gte:1
-//   }}
-// );
-  
-};
-
-
 
 module.exports = SchoolkidModel;

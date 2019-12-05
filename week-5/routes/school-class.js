@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const SchoolClassService = require('../services/schoolClass-service')
+const SchoolClassService = require('../services/school-class-service')
 
 router.get('/all', async (req, res) => {
     const schoolClasses = await SchoolClassService.findAll()

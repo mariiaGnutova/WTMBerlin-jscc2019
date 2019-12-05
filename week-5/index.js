@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const parentsRouter = require('./routes/parent')
 const schoolkidRouter = require('./routes/schoolkid')
 const gradeRouter = require('./routes/grade')
-const schoolClassRouter = require('./routes/schoolClass')
+const schoolClassRouter = require('./routes/school-class')
 const subjectRouter = require('./routes/subject')
 const teacherRouter = require('./routes/teacher')
 
