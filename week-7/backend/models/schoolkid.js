@@ -17,7 +17,7 @@ const SchoolkidSchema = new mongoose.Schema ({
     required: true,
     minlength: 2,
   },
-  
+  // _id: String,
   grades: [
     {
       type: mongoose.SchemaTypes.ObjectId,

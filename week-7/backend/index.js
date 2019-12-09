@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3010, () => {
-  console.log('Server listening')
+  console.log('Server listening 3010')
 })
 
 
