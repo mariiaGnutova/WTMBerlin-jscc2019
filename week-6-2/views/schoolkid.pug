@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    h1 The number of schoolkid is #{schoolkids.length}
+    h4 the first child is #{schoolkids[0].name}
+    each child in schoolkids 
+     h4 #{child.id} #{child.name} #{child.surname} | number of parents #{child.parents.length}

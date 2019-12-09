@@ -1,0 +1,37 @@
+{
+  "name": "wtmberlin-jscc2019",
+  "version": "1.0.0",
+  "description": "'parent chach the notes'",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava --verbose --watch",
+    "test-coverage": "nyc ava --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariiaGnutova/WTMBerlin-jscc2019.git"
+  },
+  "author": "'Mariia Gnutova'",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mariiaGnutova/WTMBerlin-jscc2019/issues"
+  },
+  "homepage": "https://github.com/mariiaGnutova/WTMBerlin-jscc2019#readme",
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "eslint": "^6.5.1",
+    "eslint-plugin-vue": "^5.2.3",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "flatted": "^2.0.1",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.7.11",
+    "mongoose-autopopulate": "^0.9.1",
+    "pug": "^2.0.4",
+    "supertest": "^4.0.2",
+    "vue-axios": "^2.1.5"
+  }
+}
