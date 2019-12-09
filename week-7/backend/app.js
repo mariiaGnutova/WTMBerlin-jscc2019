@@ -18,8 +18,9 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.listen(3080, () => {
-  console.log('Server listening 3080 - test server')
+const port = 3010
+app.listen(port, () => {
+  console.log('Server listening ' + port + ' - test server')
 })
 
 module.exports = app
