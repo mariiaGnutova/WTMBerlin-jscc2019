@@ -16,7 +16,8 @@ export default {
     ...mapActions(['fetchSchoolkids', 'incrementCounter'])
   },
   created() {
-    this.fetchSchoolkids()
+    this.fetchSchoolkids(),
+    this.incrementCounter()
   }
 }
 </script>
@@ -24,10 +25,9 @@ export default {
 <template lang="pug"> 
   main
     section
-      schoolkid-card(v-for="schoolkid in schoolkids", :schoolkid="schoolkid", :key="schoolkid.id")
-    section
-      button.increment-button(@click="incrementCounter") Increment
-      div {{ counter }}
+      ol
+        schoolkid-card(v-for="schoolkid in schoolkids", :schoolkid="schoolkid", :key="schoolkid.id")
+    
 </template>
 
 <style scoped>

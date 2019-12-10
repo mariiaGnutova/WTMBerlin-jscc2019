@@ -28,10 +28,12 @@ export default new Vuex.Store({
     },
     async fetchSchoolkids({ commit }) {
       const result = await axios.get('http://localhost:3010/schoolkid/all/json')
+      console.log("Result " + result)
       commit('SET_SCHOOLKIDS', result.data)
     },
     async fetchSchoolkid({ commit }, id) {
       const result = await axios.get(`http://localhost:3010/schoolkid/${id}/json`)
+      
       commit('SET_SCHOOLKID', result.data)
     }
   },

@@ -11,21 +11,35 @@ export default {
 </script>
 
 <template lang="pug">
-  article.card
-    img(:src="`https://picsum.photos/300/200?random=${schoolkid._id}`", alt="")
+  li.card
+    img(:src="`https://picsum.photos/50/50?random=${schoolkid._id}`", alt="")
     h2.card-title 
-      router-link(:to="schoolkidUrl") {{ schoolkid.name }} 
+      router-link(:to="schoolkidUrl") {{ schoolkid.name }} {{ schoolkid.surname }}
+    div(v-if="schoolkid.grades.length > 0")
+  
+   
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .card {
-  display: inline-block;
+  display: flex;
+  justify-content: flex-start;
+  align-items:flex-end;
   text-align: left;
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 3px;
-  margin: 20px;
-  min-width: 200px;
+  margin: 10px;
+ 
 }
+.card > img {
+  border-radius: 50%;
+  padding-right: 20px;
+}
+a{
+ color: #2c3e50;
+  text-decoration: none;
+}
+
 </style>
