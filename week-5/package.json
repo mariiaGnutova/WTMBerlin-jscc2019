@@ -27,7 +27,7 @@
     "fs": "0.0.1-security",
     "mongoose": "^5.7.11",
     "mongoose-autopopulate": "^0.9.1",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "vue-axios": "^2.1.5"
   }
 }
